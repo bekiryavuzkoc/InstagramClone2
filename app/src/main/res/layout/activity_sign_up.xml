@@ -113,7 +113,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/btnGetBoxer"
+        android:id="@+id/btnGetKickBoxer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="1dp"
@@ -130,5 +130,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtGetData"
         app:layout_constraintVertical_bias="0.007" />
+
+    <Button
+        android:id="@+id/btnNextActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Switch To Another Activity"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnGetKickBoxer" />
 
 </android.support.constraint.ConstraintLayout>

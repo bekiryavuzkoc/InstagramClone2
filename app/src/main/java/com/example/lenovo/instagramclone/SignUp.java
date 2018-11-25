@@ -28,8 +28,9 @@ public class SignUp extends AppCompatActivity {
     private EditText txtKickSpeed;
     private EditText txtKickPower;
     private TextView txtGetData;
-    private Button btnGetBoxer;
-    private String allBoxers;
+    private String allKickBoxers;
+    private Button btnGetKickBoxer;
+    private Button btnTransition;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +44,8 @@ public class SignUp extends AppCompatActivity {
         txtKickSpeed=findViewById(R.id.txtKickSpeed);
         txtKickPower=findViewById(R.id.txtKickPower);
         txtGetData = findViewById(R.id.txtGetData);
-        btnGetBoxer = findViewById(R.id.btnGetBoxer);
+        btnGetKickBoxer = findViewById(R.id.btnGetKickBoxer);
+        btnTransition = findViewById(R.id.btnNextActivity);
 
         txtGetData.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,26 +62,28 @@ public class SignUp extends AppCompatActivity {
                 });
             }
         });
-        btnGetBoxer.setOnClickListener(new View.OnClickListener() {
+        btnGetKickBoxer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                allBoxers = "";
-                ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("Boxer");
+                allKickBoxers = "";
+                ParseQuery<ParseObject> queryAll = ParseQuery.getQuery("KickBoxer");
+
+
+                queryAll.whereGreaterThanOrEqualTo("punch_power",100);
+                queryAll.setLimit(1);
+
                 queryAll.findInBackground(new FindCallback<ParseObject>() {
                     @Override
                     public void done(List<ParseObject> objects, ParseException e) {
 
                         if(e==null){
 
-                            for(ParseObject boxer: objects){
-                                allBoxers = allBoxers + boxer.get("name") +" " + boxer.get("punch_power") + " "+ boxer.get("punch_speed")  + "\n";
-
-
-                            }
-
                             if(objects.size()>0){
+                            for(ParseObject kickBoxer: objects){
+                                allKickBoxers = allKickBoxers + kickBoxer.get("name")  + "\n";
+                            }
                                 FancyToast.makeText(SignUp.this,
-                                        allBoxers ,
+                                        allKickBoxers ,
                                         FancyToast.LENGTH_LONG, FancyToast.SUCCESS, true).show();
                             }
                             else{
@@ -89,6 +93,12 @@ public class SignUp extends AppCompatActivity {
                         }
                     }
                 });
+            }
+        });
+        btnTransition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
             }
         });
     }
