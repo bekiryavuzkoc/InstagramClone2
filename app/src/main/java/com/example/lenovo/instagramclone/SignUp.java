@@ -1,5 +1,6 @@
 package com.example.lenovo.instagramclone;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -99,6 +100,9 @@ public class SignUp extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(SignUp.this,
+                        SignUpLoginActivity.class);
+                startActivity(intent);
             }
         });
     }
